@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  task-service:
+    container_name: task-service
+    build:
+      context: ./../../
+      dockerfile: ./deploy/docker/task-service/Dockerfile
+      args:
+        VERSION: ${VERSION}
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+      - ./task-service/.env
